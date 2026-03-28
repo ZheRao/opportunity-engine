@@ -47,6 +47,26 @@ Responsible for collecting and structuring grant information from official sourc
 
 * Structured grant records
 
+**Example Schema**
+
+```python
+{
+  "grant_id": "",
+  "grant_name": "",
+  "source_url": "",
+  "province": [],
+  "industry": [],
+  "max_amount": null,
+  "deadline": "",
+  "project_types": [],
+  "hard_constraints": {},
+  "soft_constraints": [],
+  "eligibility_text": "",
+  "requirements_text": "",
+  "summary": ""
+}
+```
+
 
 
 ### 2. Deterministic Eligibility Engine
@@ -90,9 +110,19 @@ Responsible for reasoning over candidates and guiding decision-making.
 
 **Output:**
 
-* Follow-up questions
-* Ranked recommendations
-* Explicit reasoning and assumptions
+1. Follow-up Questions
+    - Clarify project intent
+    - Surface hidden constraints
+    - Reduce uncertainty
+2. Ranked Recommendations  
+Grouped by:
+    - Highest approval likelihood
+    - Easiest to apply
+    - Highest funding potential
+3. Rationale
+    - Why each grant is recommended
+    - What assumptions were made
+    - What uncertainties remain
 
 
 
@@ -210,6 +240,27 @@ The focus is on:
 * explicit reasoning
 * incremental iteration
 
+## Known Challenges & Risks
+1. Ambiguous Language
+    - Terms like "innovation" or "economic benefit" are not strictly defined
+2. Soft vs Hard Constraints
+    - Some requirements are preferences, not rules
+3. Hidden Constraints
+    - Buried requirements (e.g., matching funds, partnerships)
+4. Strategic Framing
+    - Same project can be framed differently for better approval
+5. Effort vs Value Tradeoff
+    - High-value grants may require disproportionate effort
+6. Approval Uncertainty
+    - Eligibility ≠ approval likelihood
+7. Data Freshness
+    - Grants change frequently (deadlines, rules, availability)
+8. Schema Drift
+    - Different programs describe similar fields differently
+9. Incomplete Client Information
+    - System must guide, not just query
+10. Trust & Liability
+    - Recommendations must be framed as probabilistic, not guaranteed
 
 
 ## Summary
